@@ -30,7 +30,7 @@ resource "vault_database_secret_backend_connection" "mssql" {
   name          = "mssql"
   allowed_roles = ["mssql_role"]
 
-  sqlserver {
+  mssql {
     connection_url = "sqlserver://{{username}}:{{password}}@{{hostname}}:1433"
   }
 }
