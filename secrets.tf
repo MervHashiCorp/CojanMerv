@@ -28,7 +28,7 @@ resource "vault_transit_secret_backend_key" "key" {
 resource "vault_database_secret_backend_connection" "mssql" {
   backend       = vault_mount.database.path
   name          = "mssql"
-  allowed_roles = ["mssql_dev"]
+  allowed_roles = ["mssql_role"]
 
   sqlserver {
     connection_url = "sqlserver://{{username}}:{{password}}@{{hostname}}:1433"
@@ -38,7 +38,7 @@ resource "vault_database_secret_backend_connection" "mssql" {
 resource "vault_database_secret_backend_connection" "mysql" {
   backend       = vault_mount.database.path
   name          = "mysql"
-  allowed_roles = ["mysql_dev"]
+  allowed_roles = ["mysql_role"]
 
   mysql {
     connection_url = "{{username}}:{{password}}@tcp({{hostnamer}}:3306)/"
