@@ -45,14 +45,14 @@ resource "vault_database_secret_backend_connection" "mysql" {
   }
 }
 
-resource "vault_database_secret_backend_role" "role" {
+resource "vault_database_secret_backend_role" "mssql_role" {
   backend             = vault_mount.database.path
   name                = "mssql_dev"
   db_name             = vault_database_secret_backend_connection.mysql.name
   creation_statements = ["CREATE LOGIN [{{name}}] WITH PASSWORD = '{{password}}';CREATE USER [{{name}}] FOR LOGIN [{{name}}];GRANT SELECT ON SCHEMA::dbo TO [{{name}}];"]
 }
 
-resource "vault_database_secret_backend_role" "role" {
+resource "vault_database_secret_backend_role" "mysql_role" {
   backend             = vault_mount.database.path
   name                = "mysql_dev"
   db_name             = vault_database_secret_backend_connection.mysql.name
