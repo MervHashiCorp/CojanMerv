@@ -10,6 +10,12 @@ resource "vault_mount" "transit" {
   type = "transit"
 }
 
+# Enable Database secrets engine at 'database'
+resource "vault_mount" "database" {
+  path = "database"
+  type = "database"
+}
+
 # Creating an encryption key named 'payment'
 resource "vault_transit_secret_backend_key" "key" {
   depends_on = [vault_mount.transit]
